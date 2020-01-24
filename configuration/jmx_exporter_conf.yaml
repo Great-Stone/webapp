@@ -15,15 +15,15 @@ rules:
 
   - pattern: "^jboss.as<subsystem=transactions><>number_of_(.+):"
     attrNameSnakeCase: true
-    name: wildfly_transaction_$1
+    name: jboss_transaction_$1
     
   - pattern: "^jboss.as<subsystem=undertow, server=(.+), http-listener=(.+)><>(bytes_.+|error_count|processing_time|request_count):"
     attrNameSnakeCase: true
-    name: wildfly_undertow_$3
+    name: jboss_undertow_$3
     labels:
       server: $1
       http_listener: $2
       
   - pattern: "^jboss.threads<name=(.+)><>(active_count|completed_task_count):"
     attrNameSnakeCase: true
-    name: wildfly_transaction_$1
+    name: jboss_thread_$1
