@@ -1,0 +1,18 @@
+---
+startDelaySeconds: 30
+lowercaseOutputName: true
+lowercaseOutputLabelNames: true
+whitelistObjectNames: 
+ # Whitelist objects to be collected, for performance reason
+ # see https://github.com/prometheus/jmx_exporter/issues/246#issuecomment-367573931
+ # Each object in the rules below has to be added to whitelistObjectNames too !
+ # note that rules use regex (like "foo.*", whereas the whitelist use globbing expressions (like "foo*")
+ - "jboss.as:subsystem=undertow,server=*,http-listener=*"
+
+rules:
+  - pattern: "^jboss.as<subsystem=undertow, server=(.+), http-listener=(.+)><>(bytes_.+|error_count|processing_time|request_count):"
+    attrNameSnakeCase: true
+    name: wildfly_undertow_$3
+    labels:
+      server: $1
+      http_listener: $2
