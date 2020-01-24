@@ -7,16 +7,16 @@ whitelistObjectNames:
  # see https://github.com/prometheus/jmx_exporter/issues/246#issuecomment-367573931
  # Each object in the rules below has to be added to whitelistObjectNames too !
  # note that rules use regex (like "foo.*", whereas the whitelist use globbing expressions (like "foo*")
- - "jboss.as.expr:subsystem=transactions*"
- - "jboss.as.expr:subsystem=undertow,server=*,http-listener=*"
+ - "jboss.as:subsystem=transactions*"
+ - "jboss.as:subsystem=undertow,server=*,http-listener=*"
 
 rules:
 
-  - pattern: "^jboss.as.expr<subsystem=transactions><>number_of_(.+):"
+  - pattern: "^jboss.as<subsystem=transactions><>number_of_(.+):"
     attrNameSnakeCase: true
     name: wildfly_transaction_$1
     
-  - pattern: "^jboss.as.expr<subsystem=undertow, server=(.+), http-listener=(.+)><>(bytes_.+|error_count|processing_time|request_count):"
+  - pattern: "^jboss.as<subsystem=undertow, server=(.+), http-listener=(.+)><>(bytes_.+|error_count|processing_time|request_count):"
     attrNameSnakeCase: true
     name: wildfly_undertow_$3
     labels:
