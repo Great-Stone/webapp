@@ -9,6 +9,7 @@ whitelistObjectNames:
  # note that rules use regex (like "foo.*", whereas the whitelist use globbing expressions (like "foo*")
  - "jboss.as:subsystem=transactions*"
  - "jboss.as:subsystem=undertow,server=*,http-listener=*"
+ - "jboss.threads:name=*,type=thread-pool"
 
 rules:
 
@@ -22,3 +23,7 @@ rules:
     labels:
       server: $1
       http_listener: $2
+      
+  - pattern: "^jboss.threads<name=(.+)><>(active_count|completed_task_count):"
+    attrNameSnakeCase: true
+    name: wildfly_transaction_$1
