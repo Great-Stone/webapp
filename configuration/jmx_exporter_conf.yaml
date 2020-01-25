@@ -24,6 +24,6 @@ rules:
       server: $1
       http_listener: $2
       
-  - pattern: "^jboss.threads<name=(.+)><>(active_count|completed_task_count):"
+  - pattern: "^jboss.threads<name=(.+)><>(active_count):"
     attrNameSnakeCase: true
     name: jboss_thread_$1
