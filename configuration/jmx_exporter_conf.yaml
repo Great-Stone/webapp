@@ -31,7 +31,7 @@ rules:
   - pattern: "^jboss.as<subsystem=request-controller><>(active_.+|max_.+):"
     attrNameSnakeCase: true
     name: jboss_$1
-      labels:
-        namespace: 'custom-metric'
-        pod: 'sample-app'
-        service: 'sample-app'
+    labels:
+      namespace: 'custom-metric'
+      pod: 'sample-app'
+      service: 'sample-app'
