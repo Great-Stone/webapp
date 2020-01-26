@@ -11,6 +11,8 @@ whitelistObjectNames:
  #- "jboss.as:subsystem=undertow,server=*,http-listener=*"
  #- "jboss.threads:name=*,type=thread-pool"
  - "jboss.as:subsystem=request-controller"
+blacklistObjectNames:
+ - "java.*"
 rules:
 
 #   - pattern: "^jboss.as<subsystem=transactions><>number_of_(.+):"
@@ -28,9 +30,10 @@ rules:
 #     attrNameSnakeCase: true
 #     name: jboss_thread_$1
 
-  - pattern: "^jboss.as<subsystem=request-controller><>(active_.+|max_.+):"
+  - pattern: "^jboss.as<subsystem=request-controller><>(active_.+|max_.+): (.*)"
     attrNameSnakeCase: true
     name: jboss_$1
+    help: jboss Request Controller : $1
     labels:
       namespace: 'custom-metric'
       pod: 'sample-app'
