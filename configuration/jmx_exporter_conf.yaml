@@ -28,6 +28,6 @@ rules:
 #     attrNameSnakeCase: true
 #     name: jboss_thread_$1
 
-  - pattern: "^jboss.as<subsystem=request-controller><>active_requests:"
+  - pattern: "^jboss.as<subsystem=request-controller><>active(.+):"
     attrNameSnakeCase: true
-    name: jboss_activerequest_$1
+    name: jboss_active_request_$1
