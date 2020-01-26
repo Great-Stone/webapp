@@ -28,6 +28,15 @@ rules:
 #     attrNameSnakeCase: true
 #     name: jboss_thread_$1
 
-  - pattern: "^jboss.as<subsystem=request-controller><>active(.+):"
+  - pattern: "^jboss.as<subsystem=request-controller><>(active_.+|max_.+):"
     attrNameSnakeCase: true
-    name: jboss_active_request_$1
+    name: jboss_$1
+      labels:
+        namespace: 'custom-metric'
+        app: 'sample-app'
+        servivce: 'sample-app'
+        
+        
+        namespace: {resource: "namespace"}
+          pod: {resource: "pod"}
+          service: {resource: "service"}
