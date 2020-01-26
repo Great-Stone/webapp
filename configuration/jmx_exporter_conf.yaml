@@ -33,10 +33,5 @@ rules:
     name: jboss_$1
       labels:
         namespace: 'custom-metric'
-        app: 'sample-app'
-        servivce: 'sample-app'
-        
-        
-        namespace: {resource: "namespace"}
-          pod: {resource: "pod"}
-          service: {resource: "service"}
+        pod: 'sample-app'
+        service: 'sample-app'
