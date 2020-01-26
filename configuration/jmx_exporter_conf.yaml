@@ -11,8 +11,6 @@ whitelistObjectNames:
  #- "jboss.as:subsystem=undertow,server=*,http-listener=*"
  #- "jboss.threads:name=*,type=thread-pool"
  - "jboss.as:subsystem=request-controller"
-blacklistObjectNames:
- - "java.*"
 rules:
 
 #   - pattern: "^jboss.as<subsystem=transactions><>number_of_(.+):"
