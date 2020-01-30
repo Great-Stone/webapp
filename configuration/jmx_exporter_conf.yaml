@@ -33,6 +33,6 @@ rules:
     name: jboss_$1
     help: "jboss Request Controller : $1"
     labels:
-      namespace: 'my-eap-project'
+      namespace: 'prometheus-metric'
       pod: 'sample-eap'
       service: 'sample-eap'
