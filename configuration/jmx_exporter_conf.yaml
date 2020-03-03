@@ -1,38 +1,49 @@
----
-startDelaySeconds: 30
-lowercaseOutputName: true
-lowercaseOutputLabelNames: true
-whitelistObjectNames: 
- # Whitelist objects to be collected, for performance reason
- # see https://github.com/prometheus/jmx_exporter/issues/246#issuecomment-367573931
- # Each object in the rules below has to be added to whitelistObjectNames too !
- # note that rules use regex (like "foo.*", whereas the whitelist use globbing expressions (like "foo*")
- #- "jboss.as:subsystem=transactions*"
- #- "jboss.as:subsystem=undertow,server=*,http-listener=*"
- #- "jboss.threads:name=*,type=thread-pool"
- - "jboss.as:subsystem=request-controller"
-rules:
+    ---
+    startDelaySeconds: 30
+    lowercaseOutputName: true
+    lowercaseOutputLabelNames: true
+    whitelistObjectNames: 
+     # Whitelist objects to be collected, for performance reason
+     # see https://github.com/prometheus/jmx_exporter/issues/246#issuecomment-367573931
+     # Each object in the rules below has to be added to whitelistObjectNames too !
+     # note that rules use regex (like "foo.*", whereas the whitelist use globbing expressions (like "foo*")
+     #- "jboss.as:subsystem=transactions*"
+     #- "jboss.as:subsystem=undertow,server=*,http-listener=*"
+     #- "jboss.threads:name=*,type=thread-pool"
+     - "java.lang:type=OperatingSystem"
+     - "jboss.as:subsystem=request-controller"
+    rules:
 
-#   - pattern: "^jboss.as<subsystem=transactions><>number_of_(.+):"
-#     attrNameSnakeCase: true
-#     name: jboss_transaction_$1
-    
-#   - pattern: "^jboss.as<subsystem=undertow, server=(.+), http-listener=(.+)><>(bytes_.+|error_count|processing_time|request_count):"
-#     attrNameSnakeCase: true
-#     name: jboss_undertow_$3
-#     labels:
-#       server: $1
-#       http_listener: $2
-      
-#   - pattern: "^jboss.threads<name=(.+)><>(active_count):"
-#     attrNameSnakeCase: true
-#     name: jboss_thread_$1
+    #   - pattern: "^jboss.as<subsystem=transactions><>number_of_(.+):"
+    #     attrNameSnakeCase: true
+    #     name: jboss_transaction_$1
+        
+    #   - pattern: "^jboss.as<subsystem=undertow, server=(.+), http-listener=(.+)><>(bytes_.+|error_count|processing_time|request_count):"
+    #     attrNameSnakeCase: true
+    #     name: jboss_undertow_$3
+    #     labels:
+    #       server: $1
+    #       http_listener: $2
+          
+    #   - pattern: "^jboss.threads<name=(.+)><>(active_count):"
+    #     attrNameSnakeCase: true
+    #     name: jboss_thread_$1
 
-  - pattern: "^jboss.as<subsystem=request-controller><>(active_.+|max_.+): (.*)"
-    attrNameSnakeCase: true
-    name: jboss_$1
-    help: "jboss Request Controller : $1"
-    labels:
-      namespace: 'my-eap-project'
-      pod: 'sample-eap'
-      service: 'sample-eap'
+      - pattern: "^java.lang<type=OperatingSystem><>(ProcessCpuLoad): (.*)"
+        attrNameSnakeCase: true
+        name: jboss_$1
+        help: "JVM ProcessCpuLoad : $1"
+        labels:
+          namespace: 'my-eap-project'
+          pod: 'sample-eap'
+          service: 'sample-eap'
+
+      - pattern: "^jboss.as<subsystem=request-controller><>(active_.+|max_.+): (.*)"
+        attrNameSnakeCase: true
+        name: jboss_$1
+        help: "jboss Request Controller : $1"
+        labels:
+          namespace: 'my-eap-project'
+          pod: 'sample-eap'
+          service: 'sample-eap'
+
