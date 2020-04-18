@@ -34,16 +34,16 @@ rules:
     name: jboss_$1
     help: "JVM ProcessCpuLoad : $1"
     labels:
-      namespace: 'my-eap-project'
-      pod: 'sample-eap'
-      service: 'sample-eap'
+      namespace: 'my-hpa'
+      pod: 'pod-autoscale'
+      service: 'pod-autoscale'
 
   - pattern: "^jboss.as<subsystem=request-controller><>(active_.+|max_.+): (.*)"
     attrNameSnakeCase: true
     name: jboss_$1
     help: "jboss Request Controller : $1"
     labels:
-      namespace: 'my-eap-project'
-      pod: 'sample-eap'
-      service: 'sample-eap'
+      namespace: 'my-hpa'
+      pod: 'pod-autoscale'
+      service: 'pod-autoscale'
 
